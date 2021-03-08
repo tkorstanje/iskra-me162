@@ -46,7 +46,7 @@ class MeterReadings:
 		self.total_usage = self.get_wh( "1.8.0", ir_lines)
 		self.usage1 = self.get_wh( "1.8.1", ir_lines)
 		self.usage2 = self.get_wh( "1.8.2", ir_lines)
-		self.total_return = self.get_wh( "2.8.1", ir_lines)
+		self.total_return = self.get_wh( "2.8.0", ir_lines)
 		self.return1 = self.get_wh( "2.8.1", ir_lines)
 		self.return2 = self.get_wh( "2.8.2", ir_lines)
 		self.error = self.get_value( "F.F", ir_lines)
@@ -256,7 +256,7 @@ def do_work():
 
 			interval = current_readings.time - previous_readings.time
 			consumption = int((current_readings.total_usage - previous_readings.total_usage) / interval * 3600)
-			production = int((current_readings.total_return - current_readings.total_return) / interval * 3600)
+			production = int((current_readings.total_return - previous_readings.total_return) / interval * 3600)
 
 			domoticz_url = format("http://%s/json.htm?type=command&param=udevice&idx=%s&nvalue=0&svalue=%s;%s;%s;%s;%s;%s"
 				%(
